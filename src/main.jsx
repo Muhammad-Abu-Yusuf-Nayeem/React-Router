@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
+import Users from "./components/Users.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,13 +21,23 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact></Contact>,
       },
+      {
+        path: "/users",
+        loader: async () => {
+          // Example: fetch users from API
+          const res = await fetch("https://jsonplaceholder.typicode.com/users");
+          if (!res.ok) throw new Error("Failed to load users");
+          return res.json();
+        },
+        element: <Users></Users>,
+      },
     ],
   },
   {
     path: "/about",
     element: <About></About>,
   },
-  
+
   {
     path: "/contact",
     element: <Contact></Contact>,
