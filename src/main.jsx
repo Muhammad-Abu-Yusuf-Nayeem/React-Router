@@ -7,6 +7,10 @@ import Home from "./components/Home.jsx";
 import About from "./components/About.jsx";
 import Contact from "./components/Contact.jsx";
 import Users from "./components/Users.jsx";
+import User from "./components/User.jsx";
+import UserDetails from "./components/UserDetails.jsx";
+import Posts from "./components/Posts.jsx";
+import PostDetails from "./components/PostDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +34,34 @@ const router = createBrowserRouter([
           return res.json();
         },
         element: <Users></Users>,
+      },
+      {
+        path: "/user/:userId",
+        loader: ({ params }) => {
+          return fetch(
+            `https://jsonplaceholder.typicode.com/users/${params.userId}`
+          );
+        },
+        element: <UserDetails></UserDetails>,
+      },
+      {
+        path: "/posts",
+        loader: async () => {
+          // Example: fetch users from API
+          const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+          if (!res.ok) throw new Error("Failed to load Posts");
+          return res.json();
+        },
+        element: <Posts></Posts>,
+      },
+      {
+        path: "/post/:postId",
+        loader: ({ params }) => {
+          return fetch(
+            `https://jsonplaceholder.typicode.com/posts/${params.postId}`
+          );
+        },
+        element: <PostDetails></PostDetails>,
       },
     ],
   },
