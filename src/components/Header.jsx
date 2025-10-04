@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import "./style.css";
 
 const Header = () => {
   return (
@@ -11,14 +12,14 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
 
-        <Link to="/about">About</Link>
+        <NavLink to="/about">About</NavLink>
 
-        <Link to="/contact">Contact</Link>
+        <NavLink to="/contact">Contact</NavLink>
 
-        <Link to="/posts">Posts</Link>
-        <Link to="/users">Users</Link>
+        <NavLink to="/posts">Posts</NavLink>
+        <NavLink to="/users">Users</NavLink>
       </nav>
     </div>
   );
